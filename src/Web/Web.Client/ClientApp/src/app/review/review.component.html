@@ -1,0 +1,41 @@
+<h3>Create review </h3>
+<h5>{{ gameName }}</h5>
+
+<form [formGroup]="myForm" (ngSubmit)="submit()" >
+
+  <div class="form-group">
+    <label for="">Name</label>
+    <input type="text" formControlName="name" class="form-control" placeholder="Enter name">
+    <small *ngIf="myForm.controls['name'].invalid && myForm.controls['name'].touched" class="form-text text-danger">Your
+      name is required</small>
+  </div>
+
+
+  <div class="form-group">
+    <label for="">Email address</label>
+    <input formControlName="email" class="form-control" placeholder="Enter email">
+    <small *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched" class="form-text text-danger">Not valid email</small>
+  </div>
+
+  <div class="form-group">
+    <label for="">Comment </label>
+    <textarea formControlName="comment" class="form-control" placeholder="Enter Comment"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="">Raiting </label>
+    <select formControlName="raiting" class="form-control">
+      <option *ngFor="let item of raiting" value="{{item.id}}">{{item.name}}</option>
+    </select>
+  </div>
+
+  <div *ngIf="errorMessage != null "  class="alert alert-danger" role="alert" style="margin-top: 40px;" >
+    {{errorMessage}}
+  </div>
+
+  <div class="form-group" style="margin-top: 40px;">
+    <button type="submit" [disabled]="myForm.invalid || isSended" class="btn btn-primary">Submit</button>
+  </div>
+
+
+</form>

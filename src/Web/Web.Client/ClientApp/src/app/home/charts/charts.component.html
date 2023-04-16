@@ -1,0 +1,14 @@
+
+<span *ngIf="chartData.datasets.length == 0 ;else graphic">
+    loading
+</span>
+
+<ng-template #graphic>
+  <canvas baseChart 
+        [data]="chartData" 
+        [type]="'bar'"
+        [options]="chartOptions"
+      >
+      </canvas>
+
+</ng-template>
