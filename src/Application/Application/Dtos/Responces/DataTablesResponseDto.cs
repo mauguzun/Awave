@@ -1,4 +1,4 @@
-﻿namespace Application.Dtos
+﻿namespace Application.Dtos.Responces
 {
     public record DataTablesResponseDto<T>
     {

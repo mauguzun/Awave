@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.Responces;
 using Application.Interfaces;
 using AutoMapper;
 using DataAccess.Interfaces;
@@ -17,25 +17,25 @@ namespace Application.Implementation
             _dbContext = dbContext;
         }
 
-        public async Task<ChartData> GetMostRatedGame(int count = 5)
+        public async Task<ChartDataResponseDto> GetMostRatedGame(int count = 5)
         {
             var games = await _dbContext.Games
                 .OrderByDescending(game => game.RatingsCount)
                 .Take(count)
                 .ToListAsync();
 
-            return _mapper.Map<ChartData>(games);
+            return _mapper.Map<ChartDataResponseDto>(games);
         }
 
 
-        public async Task<ChartData> GetLowestRatedGame(int count = 5)
+        public async Task<ChartDataResponseDto> GetLowestRatedGame(int count = 5)
         {
             var games = await _dbContext.Games
                .OrderBy(game => game.RatingsCount)
                .Take(count)
                .ToListAsync();
 
-            return _mapper.Map<ChartData>(games);
+            return _mapper.Map<ChartDataResponseDto>(games);
         }
     }
 }

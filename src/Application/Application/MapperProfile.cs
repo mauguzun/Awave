@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.Responces;
 using AutoMapper;
 using Entities.Models;
 
@@ -8,25 +8,25 @@ namespace Application
     {
         public MapperProfile()
         {
-            CreateMap<Game, GameDto>();
+            CreateMap<Game, GameResponseDto>();
 
-            CreateMap<Review, ReviewDto>()
+            CreateMap<Review, ReviewResponseDto>()
                 .ForMember(
                     dest => dest.GameName,
                     opt => opt.MapFrom(x => x.Game != null ? x.Game.Name : default));
 
 
-            CreateMap<List<Game>, ChartData>()
+            CreateMap<List<Game>, ChartDataResponseDto>()
                   .ForMember(
                     dest => dest.Labels,
                     opt => opt.MapFrom(game => game.Select(x => x.Name)))
                  .ForMember(
                     dest => dest.Datasets,
                     opt => opt.MapFrom((src, dest, member, context) =>
-                    new List<ChartDataset>
+                    new List<ChartDatasetResponse>
                     {
-                        new ChartDataset("raiting Count",src.Select(x=>x.RatingsCount).ToList()),
-                        new ChartDataset("raiting Added", src.Select(x=>x.Added).ToList()),
+                        new ChartDatasetResponse("raiting Count",src.Select(x=>x.RatingsCount).ToList()),
+                        new ChartDatasetResponse("raiting Added", src.Select(x=>x.Added).ToList()),
                     }));
 
 

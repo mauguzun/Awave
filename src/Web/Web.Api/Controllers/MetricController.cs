@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.Responces;
 using Application.Implementation;
 using Application.Interfaces;
 using Entities.Models;
@@ -16,14 +16,14 @@ namespace Web.Api.Controllers
         public MetricController(IMetricService metricService) => _metricService = metricService;
 
         [HttpGet("best")]
-        [ResponseType(typeof(ChartData))]
+        [ResponseType(typeof(ChartDataResponseDto))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ChartData> GetSortedByRaitingAsync() => await _metricService.GetMostRatedGame(5);
+        public async Task<ChartDataResponseDto> GetSortedByRaitingAsync() => await _metricService.GetMostRatedGame(5);
 
 
         [HttpGet("worst")]
-        [ResponseType(typeof(ChartData))]
+        [ResponseType(typeof(ChartDataResponseDto))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ChartData> GetSortedByRatingCountAsync() => await _metricService.GetLowestRatedGame(5);
+        public async Task<ChartDataResponseDto> GetSortedByRatingCountAsync() => await _metricService.GetLowestRatedGame(5);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.Requests;
+using Application.Dtos.Responces;
 using Application.Interfaces;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +19,8 @@ namespace Web.Api.Controllers
 
 
         [HttpGet]
-        [ResponseType(typeof(DataTablesResponseDto<GameDto>))]
+        [ResponseType(typeof(DataTablesResponseDto<GameResponseDto>))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<DataTablesResponseDto<GameDto>> Get([FromQuery] GameQueryParametrsDto query) => await _gameService.GetAsync(query);
+        public async Task<DataTablesResponseDto<GameResponseDto>> Get([FromQuery] GameQueryParametrsDto query) => await _gameService.GetAsync(query);
     }
 }

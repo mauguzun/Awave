@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.Responces;
 using Application.Interfaces;
 using AutoMapper;
 using DataAccess.Interfaces;
@@ -22,7 +22,7 @@ namespace Application.Implementation
             _calculateAverage = calculateAverage;
         }
 
-        public async Task<List<ReviewDto>> GetAsync(int count = 20)
+        public async Task<List<ReviewResponseDto>> GetAsync(int count = 20)
         {
             var review = await _dbContext.Reviews
                 .OrderByDescending(x => x.Id)
@@ -30,12 +30,12 @@ namespace Application.Implementation
                 .Take(count)
                 .ToListAsync();
 
-            var reviewDto = _mapper.Map<List<ReviewDto>>(review);
+            var reviewDto = _mapper.Map<List<ReviewResponseDto>>(review);
 
             return reviewDto;
         }
 
-        public async Task<AddReviewResultDto> CreateAsync(Review review)
+        public async Task<AddReviewResponseDto> CreateAsync(Review review)
         {
             var game = await _dbContext.Games
                 .Include(game => game.Reviews)
@@ -44,11 +44,11 @@ namespace Application.Implementation
 
             if (game == null)
             {
-                return new AddReviewResultDto(HttpStatusCode.NotFound, "Not Found");
+                return new AddReviewResponseDto(true, false, $"Game with {review.GameId} doesn't exist !");
             }
             else if (game.Reviews.Any(x => x.Email == review.Email))
             {
-                return new AddReviewResultDto(HttpStatusCode.Conflict, "Already Exist");
+                return new AddReviewResponseDto(false, true, $"Comment with {review.Email} already exist !");
             }
 
             game.Rating = _calculateAverage.Calculate(game, review.Rating);
@@ -58,7 +58,7 @@ namespace Application.Implementation
             _dbContext.Reviews.Add(review);
             await _dbContext.SaveChagesAsync();
 
-            return new AddReviewResultDto(HttpStatusCode.Created, "Ok");
+            return new AddReviewResponseDto(false, false, "Created");
         }
 
     }

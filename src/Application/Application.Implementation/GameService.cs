@@ -1,11 +1,12 @@
-﻿using Application.Dtos;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
 using DataAccess.Interfaces;
 using System.Linq.Dynamic.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Entities.Models;
+using Application.Dtos.Responces;
+using Application.Dtos.Requests;
 
 namespace Application.Implementation
 {
@@ -20,7 +21,7 @@ namespace Application.Implementation
             _dbContext = dbContext;
         }
 
-        public async Task<DataTablesResponseDto<GameDto>> GetAsync(GameQueryParametrsDto query)
+        public async Task<DataTablesResponseDto<GameResponseDto>> GetAsync(GameQueryParametrsDto query)
         {
             query ??= new GameQueryParametrsDto() { OrderColumn = "name" };
 
@@ -39,7 +40,7 @@ namespace Application.Implementation
                 .Skip(query.StartFrom)
                 .Take(query.PageLength);
 
-            return new DataTablesResponseDto<GameDto>(totalGamesCount, games.Count(), _mapper.Map<List<GameDto>>(gamesOnPage));
+            return new DataTablesResponseDto<GameResponseDto>(totalGamesCount, games.Count(), _mapper.Map<List<GameResponseDto>>(gamesOnPage));
 
         }
     }

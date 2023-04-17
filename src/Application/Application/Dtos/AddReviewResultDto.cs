@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Application.Dtos
+﻿namespace Application.Dtos.Responces
 {
-    public record AddReviewResultDto(HttpStatusCode StatusCode, string? Content) { }
+    public record AddReviewResponseDto(bool IsExist, bool isDuplicate, string? Content) { }
 }
