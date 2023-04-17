@@ -22,16 +22,17 @@ namespace Application.Implementation
 
         public async Task<DataTablesResponseDto<GameDto>> GetAsync(GameQueryParametrsDto query)
         {
-            query ??= new GameQueryParametrsDto();
+            query ??= new GameQueryParametrsDto() { OrderColumn = "name" };
 
-             var totalGamesCount = await _dbContext.Games.CountAsync();
+            var totalGamesCount = await _dbContext.Games.CountAsync();
 
             var columnName = char.ToUpper(query.OrderColumn.First()) + query.OrderColumn.Substring(1).ToLower();
 
             var games = string.IsNullOrEmpty(query.SearchQuery) ?
                 _dbContext.Games.AsQueryable() :
-                _dbContext.Games.Where(c => c.Name.Contains(  query.SearchQuery.Trim().ToLower() )).AsQueryable();
-
+                _dbContext.Games.Where(c => c.Name.Contains(query.SearchQuery.Trim().ToLower())).AsQueryable();
+            
+            // todo dynamci sql , wtf 
             games = query.IsAscSorting ? games.OrderBy(columnName) : games.OrderBy(columnName).Reverse();
 
             var gamesOnPage = games

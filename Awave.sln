@@ -10,6 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "src\Web\Web.Api\Web.Api.csproj", "{0125F061-83AC-4AC0-A2E6-B12ED4678994}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{8866A335-443C-445C-AA2C-090608DAF856}"
+	ProjectSection(SolutionItems) = preProject
+		src\Entities\Entities\Models\Game.cs = src\Entities\Entities\Models\Game.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "src\Entities\Entities\Entities.csproj", "{E781A42E-BC7A-468E-9439-D43D675C1331}"
 EndProject
@@ -29,11 +32,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Interfaces", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Implementation", "src\Application\Application.Implementation\Application.Implementation.csproj", "{6BD51323-B03F-4DC4-AAD0-F88DE23FE863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Interfaces", "src\Entities\Entities.Interfaces\Entities.Interfaces.csproj", "{02DAD318-C5BA-4B77-A600-EE8A4BE35BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Interfaces", "src\Entities\Entities.Interfaces\Entities.Interfaces.csproj", "{02DAD318-C5BA-4B77-A600-EE8A4BE35BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Implementations", "src\Entities\Entities.Implementations\Entities.Implementations.csproj", "{B7A4D2CE-1B41-4608-ADEB-8A3B8597C3A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Implementations", "src\Entities\Entities.Implementations\Entities.Implementations.csproj", "{B7A4D2CE-1B41-4608-ADEB-8A3B8597C3A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Client", "src\Web\Web.Client\Web.Client.csproj", "{1D53643E-52BF-40C1-934E-0786855BD0DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Client", "src\Web\Web.Client\Web.Client.csproj", "{1D53643E-52BF-40C1-934E-0786855BD0DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

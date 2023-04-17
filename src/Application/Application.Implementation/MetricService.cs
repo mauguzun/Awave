@@ -24,10 +24,9 @@ namespace Application.Implementation
                 .Take(count)
                 .ToListAsync();
 
-            var res  = _mapper.Map<ChartData>(games);
-
-            return res;
+            return _mapper.Map<ChartData>(games);
         }
+
 
         public async Task<ChartData> GetLowestRatedGame(int count = 5)
         {
@@ -36,9 +35,7 @@ namespace Application.Implementation
                .Take(count)
                .ToListAsync();
 
-            var res = _mapper.Map<ChartData>(games);
-
-            return res;
+            return _mapper.Map<ChartData>(games);
         }
     }
 }

@@ -53,8 +53,6 @@ export class ReviewComponent implements OnInit {
 
   submit() {
 
-    this.errorMessage = null;
-
     let review = new Review(
       this.myForm.value['name'],
       this.myForm.value['raiting'],
@@ -63,7 +61,8 @@ export class ReviewComponent implements OnInit {
       this.myForm.value['comment']
     );
     
-    this.isSended = true;
+    this.isSended = true;   
+    this.errorMessage = null;
    
     this.service.add(review)
       .subscribe(
@@ -77,7 +76,6 @@ export class ReviewComponent implements OnInit {
         }, 
         () => console.log('HTTP request completed.')
       )
-
   }
 
 
