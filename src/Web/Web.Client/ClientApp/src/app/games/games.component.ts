@@ -3,7 +3,8 @@ import { GameService } from '../services/game.service';
 import { DataTablesResponseDto } from '../models/DataTablesResponseDto';
 import { GameDto } from '../models/GameDto';
 import { Router } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
+import { ADTSettings } from 'angular-datatables/src/models/settings';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-games',
@@ -12,9 +13,8 @@ import { HttpParams } from '@angular/common/http';
 })
 export class GamesComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
-
-  constructor(private service: GameService, private router: Router) { }
+  dtOptions: ADTSettings = {};
+  constructor(private service: GameService, private router: Router,    private datePipe: DatePipe) { }
 
   redirectToReview(info: any): void {
     this.router.navigate([`./review/${info.id}/${info.name}`]);
@@ -40,13 +40,17 @@ export class GamesComponent implements OnInit {
 
       columns: [{
         title: 'Id',
-        data: 'id'
+        data: 'id',
+        
       }, {
         title: 'Name',
-        data: 'name'
+        data: 'name',
+       
       }, {
         title: 'Released',
         data: 'released',
+        ngPipeInstance: this.datePipe,
+        ngPipeArgs: ['Y']
       }, {
         title: 'Rating',
         data: 'rating'

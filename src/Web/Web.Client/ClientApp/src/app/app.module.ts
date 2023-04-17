@@ -14,6 +14,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { LastReviewsComponent } from './home/last-reviews/last-reviews.component';
 import { GamesComponent } from './games/games.component';
 import { ReviewComponent } from './review/review.component';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ReviewComponent } from './review/review.component';
       { path: 'review/:id/:name', component: ReviewComponent },
     ])
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
